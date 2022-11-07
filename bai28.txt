@@ -1,0 +1,15 @@
+int put: int arr[n], int k
+out put: the minium sum subarray of a given size 'k'
+
+check n==0 or n<=k
+	return emty
+create int window_sum = 0; int min_window = maximum value for an int (2^64-1); int last =0;
+
+for i in length of arr :
+	window_sum = window_sum + arr[i];
+	last = i;
+	if (i+1 >= k)
+		if (min_window > window_sum):	min_window = window_sum;
+						last = i;
+						window_sum = window_sum - arr[i+1 -k];
+return (last-k+1) & (last)
