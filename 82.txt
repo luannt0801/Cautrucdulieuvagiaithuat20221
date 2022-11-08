@@ -9,8 +9,11 @@ if arr.size = 0 --> return 0;
 if k == 0 --> return 0;
 i =0
 if i = arr.size --> return 0;
-push_back (arr[i]) to vector out --> k-1; i+1
+subarray insert out
+push_back (arr[i]) to vector out; k-1; i+1
 then pop_back vector out // xoa bo phan tu cuoi cung cua vector out -- backtrack
 
 i=i+1
 push_back (arr[i]) to vector out 
+
+print subarray
