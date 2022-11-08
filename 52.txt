@@ -1,0 +1,9 @@
+input: int arr[n]
+output: number xuat hien le lan
+
+int check = o;
+for i from 0 to n-1; i++ :
+	check = check ^ arr[i];
+	if arr[i] xuat hien chan lan --> check = 0;
+	if arr[i] xuat hien le lan --> check = arr[i]
+return check
