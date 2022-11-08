@@ -1,0 +1,17 @@
+// Mã giả bài 142
+input: string seq
+output: string result
+
+eg: input DDDIDD
+    output 54321876
+
+Nhập vào string seq;
+Tạo stack <int> s;
+for (int i = 0 ; i <= seq.length(); i++)
+	Nhập vào stack s số i+1
+	if i bằng seq.length() hoặc seq[i] là "I"
+		Thực hiện vòng lặp:
+			Lấy s.top() của stack ra gán vào string result
+			Xóa phần tử s.top()
+		Dừng lại cho đến khi stack s rỗng
+Trả về result.
