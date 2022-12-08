@@ -1,7 +1,9 @@
 #include <iostream>
+#include <string.h>
+#include <stdio.h>
 
 using namespace std;
-
+// tạo cấu trúc sinh viên
 struct Sinhvien
 {
     char msSV[8];
@@ -17,39 +19,36 @@ struct Ngay
 {
     int ngay, thang, nam;
 };
-
+// tạo cấu trúc danh sách liên kết đơn
 struct Node
 {
-    Sinhvien data;
+    Sinhvien *data;
     Node* Link;
 };
-typedef struct Node NODE;
 
 struct List
 {
     Node* first;
     Node* last;
 };
-typedef struct  List LIST;
-
-void taodanhsach (LIST &ds)
+// Khởi tạo danh sách liên kết đơn
+void taodanhsach (List &ds)
 {
     ds.first = NULL;
-    ds.last = NULL;
 }
 
-int CheckRong (LIST ds)
+int CheckRong (List ds)
 {
     if (ds.first = NULL)
         return 1;
     else
         return 0;
 }
-
-NODE* taonode (Sinhvien SV)  // char a, char b, int c, char d, char e, char f // char a[8], char b[50], int c, int d, char e[100], char f[12], char g[7]
+// tạo node sinh viên
+Node *taonode (Sinhvien *SV) 
 {
-    NODE* p; // tao node P moi
-    p = new NODE;
+    Node* p; // tao node P moi
+    p = new Node;
     if (p == NULL)  // neu p null thi khong luu duoc vao danh sach
     {
         cout << "KHONG DU BO NHO";
@@ -80,17 +79,17 @@ Sinhvien* Nhapsinhvien()
 
     return sv;
 }
-
-void add_ds (LIST *&ds, Sinhvien sv)
+// thêm node mới vào danh sách
+void add_ds (List *&ds, Sinhvien *sv)
 {
-    NODE* pList = taonode(sv);
+    Node *pList = taonode(sv);
     if (ds->first == NULL)
     {
         ds->first = pList;
     }
     else
     {
-        NODE* padd = ds->first;
+        Node* padd = ds->first;
         while (padd->Link != NULL)
         {
             padd = padd->Link;
@@ -99,10 +98,57 @@ void add_ds (LIST *&ds, Sinhvien sv)
     }
 }
 
+void PrintDs(List *ds)
+{
+    Node *pPrint = ds->first;
+    if (pPrint == NULL)
+    {
+        cout <<"Danh sach rong";
+        return;
+    }
+    while (pPrint != NULL)
+    {
+        Sinhvien *sv = pPrint->data;
+        cout << sv->hoTen << endl << sv->msSV << endl << sv->gioiTinh << endl << sv->lop << endl << sv->khoa << endl << sv->ngaySinh << endl << sv->diaChi;
+        pPrint = pPrint->Link;
+    }
+}
+
+void Sapxep(List *&ds)
+{
+    for (Node *pRun = ds->first; pRun != NULL; pRun = pRun->Link)
+    {
+        for (Node *pRun2 = pRun->Link; pRun != NULL; pRun2 = pRun2->Link)
+        {
+            Sinhvien *sv1 = pRun->data;
+            Sinhvien *sv2 = pRun2->data;
+            if (sv1->msSV > sv2->msSV )
+            {
+                char massv[8];
+                strcpy(massv, sv1->msSV);
+                char ten[150];
+                strcpy(sv1->hoTen, ten);
+
+                strcpy(sv1->msSV, sv2->msSV);
+                strcpy(sv1->hoTen, sv2->hoTen);
+
+                strcpy(sv2->msSV, massv);
+                strcpy(sv2->hoTen, ten);
+
+            } 
+        }
+    }
+}
+
+
+
 int main()
 {
-    List* ds;
-    taodanhsach(ds);
-    CheckRong(ds);
+    List *ds;
+    CheckRong(*ds);
+    taodanhsach(*ds);
+    Sinhvien *luan = Nhapsinhvien();
+    add_ds(ds);
+    PrintDs(ds);
 
 }
